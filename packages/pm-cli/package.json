@@ -11,5 +11,8 @@
   },
   "keywords": [],
   "author": "jinpengh <13143352767@163.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "commander": "^11.1.0"
+  }
 }
