@@ -1,5 +1,5 @@
 {
-  "name": "pm-cli",
+  "name": "web-generator-cli",
   "version": "1.0.0",
   "description": "",
   "type": "module",
@@ -11,7 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "pm": "./bin/index.js"
+    "wg": "./bin/index.js"
   },
   "keywords": [],
   "author": "jinpengh <13143352767@163.com>",
@@ -20,6 +20,7 @@
     "@inquirer/prompts": "^3.2.0",
     "commander": "^11.1.0",
     "fs-extra": "^11.1.1",
-    "mustache": "^4.2.0"
+    "mustache": "^4.2.0",
+    "ora": "^7.0.1"
   }
 }

@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "pm": "pm"
+    "wg": "wg"
   },
   "devDependencies": {
-    "pm-cli": "workspace:*"
+    "web-generator-cli": "workspace:*"
   },
   "keywords": [],
   "author": "jinpengh <13143352767@163.com>",
