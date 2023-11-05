@@ -1,0 +1,78 @@
+{
+  "name": "vue2-pc",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm run serve",
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "commit": "cz",
+    "lint": "vue-cli-service lint",
+    "lint:style": "stylelint \"./**/*.{css,less,vue,html}\" --fix",
+    "lint-staged": "lint-staged",
+    "format": "prettier --write src/",
+    "postinstall": "husky install"
+  },
+  "dependencies": {
+    "ant-design-vue": "^1.7.8",
+    "axios": "^1.4.0",
+    "core-js": "^3.8.3",
+    "md5": "^2.3.0",
+    "nprogress": "^0.2.0",
+    "vue": "^2.6.14",
+    "vue-router": "^3.5.1",
+    "vuex": "^3.6.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.16",
+    "@babel/eslint-parser": "^7.12.16",
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-eslint": "~5.0.0",
+    "@vue/cli-plugin-router": "~5.0.0",
+    "@vue/cli-plugin-vuex": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "babel-plugin-import": "^1.13.8",
+    "commitizen": "^4.3.0",
+    "cz-git": "^1.7.1",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-vue": "^8.0.3",
+    "husky": "^8.0.0",
+    "less": "^4.0.0",
+    "less-loader": "^8.0.0",
+    "lint-staged": "^14.0.0",
+    "postcss-html": "^1.5.0",
+    "postcss-less": "^6.0.0",
+    "prettier": "^2.4.1",
+    "style-resources-loader": "^1.5.0",
+    "stylelint": "^15.10.2",
+    "stylelint-config-html": "^1.1.0",
+    "stylelint-config-recess-order": "^4.3.0",
+    "stylelint-config-recommended-vue": "^1.5.0",
+    "svg-sprite-loader": "^6.0.11",
+    "svgo-loader": "^4.0.0",
+    "vue-template-compiler": "^2.6.14"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-git"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,cjs,mjs,ts,tsx,cts,mts}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "src/**/*.{vue,html}": [
+      "stylelint --fix",
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "src/**/*.{css,less}": [
+      "stylelint --fix"
+    ]
+  }
+}
