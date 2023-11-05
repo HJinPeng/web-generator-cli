@@ -1,9 +1,6 @@
-import { exec } from "node:child_process";
-import path from "node:path";
 import fs from "fs-extra";
-import { confirm, input, select } from "@inquirer/prompts";
-import ora from "ora";
-import { isCommandInstalled, cwdResolve } from "../tool.js";
+import { confirm, input, select, checkbox } from "@inquirer/prompts";
+import { cwdResolve } from "../tool.js";
 
 /**
  * 获取项目名称--Promise
@@ -117,6 +114,75 @@ export async function selectCompLib() {
 }
 
 /**
+ * 选择页面组件
+ * @author jinpengh
+ *
+ * @export
+ * @async
+ * @returns {Promise<Array>}
+ */
+export async function checkPageComp() {
+  let pageComp = await checkbox({
+    message: "选择页面组件（默认内置【欢迎页、异常页】）：",
+    choices: [
+      {
+        name: "登录",
+        value: "login",
+      },
+      {
+        name: "用户管理",
+        value: "user",
+      },
+      {
+        name: "角色管理",
+        value: "role",
+      },
+      {
+        name: "菜单管理",
+        value: "menu",
+      },
+      {
+        name: "字典管理",
+        value: "dict",
+      },
+      {
+        name: "文件管理",
+        value: "file",
+      },
+      {
+        name: "echarts看板",
+        value: "echarts",
+      },
+      {
+        name: "antv-g6示例",
+        value: "g6",
+      },
+    ],
+  });
+  if (pageComp.includes("login")) {
+    const loginMode = await select({
+      message: "请选择登录模式：",
+      choices: [
+        {
+          name: "账密",
+          value: "login:account",
+        },
+        {
+          name: "单点登录",
+          value: "login:sso",
+        },
+        {
+          name: "账密+单点登录",
+          value: "login:account+sso",
+        },
+      ],
+    });
+    pageComp.push(loginMode);
+  }
+  return pageComp;
+}
+
+/**
  * 是否使用eslint
  * @author jinpengh
  *
@@ -192,43 +258,4 @@ export async function selectNpmUtil() {
     ],
   });
   return npmUtil;
-}
-
-/**
- * 使用npm管理工具安装依赖
- * @author jinpengh
- *
- * @export
- * @async
- * @param {'npm' | 'yarn' | 'pnpm'} npmUtil
- * @param {string} execDir
- * @param {string} projectName
- * @returns {Promise}
- */
-export async function installDependencies(npmUtil, execDir, projectName) {
-  return new Promise((resolve, reject) => {
-    // 指令不存在，则用 npm
-    if (!isCommandInstalled(npmUtil)) {
-      npmUtil = "npm";
-    }
-    // Loading
-    const spinner = ora("安装依赖中，请稍等...").start();
-
-    // 执行下载安装依赖操作
-    exec(`${npmUtil} install`, { cwd: execDir }, (error, stdout, stderr) => {
-      if (error) {
-        spinner.fail("依赖安装失败");
-        reject(error);
-        return;
-      }
-      spinner.succeed("依赖安装完成");
-      console.log("\r\n");
-      console.log("项目初始化完成，执行以下命令启动项目：");
-      console.log("\r\n");
-      console.log(`  cd ${projectName}`);
-      console.log(`  ${npmUtil === "npm" ? "npm run" : npmUtil} dev`);
-      console.log("\r\n");
-      resolve();
-    });
-  });
 }

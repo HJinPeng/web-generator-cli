@@ -9,12 +9,13 @@ import {
   selectFrame,
   selectCompLib,
   selectNpmUtil,
-  installDependencies,
   confirmESLint,
   confirmPrettier,
   confirmStylelint,
+  checkPageComp,
 } from "./inquirer.js";
 import { cwdResolve } from "../tool.js";
+import { generateProject } from "./generate.js";
 
 // 当前文件地址
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -35,6 +36,9 @@ export async function create(projectName, options) {
   // 前端组件库
   const compLib = await selectCompLib();
 
+  // 页面组件
+  const pageComp = await checkPageComp();
+
   // eslint
   const eslint = await confirmESLint();
 
@@ -44,12 +48,27 @@ export async function create(projectName, options) {
   // stylelint
   const stylelint = await confirmStylelint();
 
+  // npm管理工具
+  const npmUtil = await selectNpmUtil();
+
+  await generateProject({
+    projectName,
+    projectDir,
+    projectTitle,
+    frame,
+    compLib,
+    pageComp,
+    eslint,
+    prettier,
+    stylelint,
+    npmUtil,
+  });
+
   /*
   // 前端框架
   const frame = await selectFrame();
 
-  // npm管理工具
-  const npmUtil = await selectNpmUtil();
+  
 
   // 确保目录存在，如果不存在，则创建目录
   await fs.ensureDir(targetDir);
