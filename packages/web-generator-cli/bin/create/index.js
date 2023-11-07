@@ -1,8 +1,3 @@
-import path, { dirname } from "node:path";
-import fs from "fs-extra";
-import { fileURLToPath } from "node:url";
-import { confirm, input, select } from "@inquirer/prompts";
-import mustache from "mustache";
 import {
   getProjectName,
   inputProjectTitle,
@@ -16,9 +11,6 @@ import {
 } from "./inquirer.js";
 import { cwdResolve } from "../tool.js";
 import { generateProject } from "./generate.js";
-
-// 当前文件地址
-const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export async function create(projectName, options) {
   // 项目名称
@@ -63,32 +55,4 @@ export async function create(projectName, options) {
     stylelint,
     npmUtil,
   });
-
-  /*
-  // 前端框架
-  const frame = await selectFrame();
-
-  
-
-  // 确保目录存在，如果不存在，则创建目录
-  await fs.ensureDir(targetDir);
-
-  // 判断使用的框架
-  if (frame === "vue2") {
-    const frameworkDir = path.resolve(__dirname, "../../templates/vue2");
-    await fs.copy(path.resolve(frameworkDir, "./base"), targetDir);
-    await generatePackageJson(targetDir, frameworkDir, projectName);
-  }
-  // 最后一步：安装依赖
-  await installDependencies(npmUtil, targetDir, projectName);
-  */
-}
-
-async function generatePackageJson(targetDir, frameworkDir, projectName) {
-  const packageJson = await fs.readFile(
-    path.resolve(frameworkDir, "./tpl/package.json.mustache"),
-    "utf8"
-  );
-  const result = mustache.render(packageJson, { projectName });
-  await fs.outputFile(path.resolve(targetDir, "./package.json"), result);
 }

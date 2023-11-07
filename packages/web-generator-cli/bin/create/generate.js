@@ -3,6 +3,7 @@ import path, { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { exec } from "node:child_process";
 import ora from "ora";
+import ejs from "ejs";
 import { isCommandInstalled } from "../tool.js";
 
 // 当前文件地址
@@ -31,16 +32,49 @@ export async function generateProject(options) {
     npmUtil,
   } = options;
 
-  // 确保目录存在，如果不存在，则创建目录
-  await fs.ensureDir(projectDir);
-
-  // 模板目录
+  // 模板路径
   const templateDir = path.resolve(__dirname, "../../templates/vue2");
-  // 拷贝模板
-  await fs.copy(templateDir, projectDir);
-
+  // 拷贝
+  await copyAndRenderFiles(templateDir, projectDir, options);
   // 安装依赖
-  await installDependencies(npmUtil, projectDir, projectName);
+  setTimeout(async () => {
+    await installDependencies(npmUtil, projectDir, projectName);
+  }, 1000);
+}
+
+/**
+ * 将模板复制到指定目录下，并将ejs渲染
+ * @author jinpengh
+ *
+ * @export
+ * @async
+ * @param {*} templateDir
+ * @param {*} projectDir
+ * @param {{}} [options={}]
+ * @returns {*}
+ */
+export async function copyAndRenderFiles(
+  templateDir,
+  projectDir,
+  options = {}
+) {
+  const items = await fs.readdir(templateDir);
+  items.forEach(async (item) => {
+    const templateItemPath = `${templateDir}/${item}`;
+    const projectItemPath = `${projectDir}/${item}`;
+    const isDir = (await fs.lstat(templateItemPath)).isDirectory();
+    if (isDir) {
+      await fs.ensureDir(projectItemPath);
+      await copyAndRenderFiles(templateItemPath, projectItemPath, options);
+    } else {
+      if (item.endsWith(".ejs")) {
+        const data = await ejs.renderFile(templateItemPath, options);
+        await fs.outputFile(projectItemPath.replace(".ejs", ""), data);
+      } else {
+        await fs.copy(templateItemPath, projectItemPath);
+      }
+    }
+  });
 }
 
 /**
