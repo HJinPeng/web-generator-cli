@@ -11,9 +11,39 @@ import http from '@/common/http'
  * @returns {*}
  */
 export function getRolePageApi(params) {
+  /*
   return http({
     url: '/role/page',
     params
+  })
+  */
+  return Promise.resolve({
+    current: 1,
+    size: 10,
+    pages: 1,
+    records: [
+      {
+        roleCode: 'test1',
+        roleName: '测试角色1',
+        status: '1',
+        id: 3,
+        createByName: '管理员',
+        createDateTime: '2023-11-02 14:14:43',
+        updateByName: null,
+        updateDateTime: null
+      },
+      {
+        roleCode: 'admin',
+        roleName: '管理员',
+        status: '1',
+        id: 2,
+        createByName: '管理员',
+        createDateTime: '2023-10-26 00:10:46',
+        updateByName: null,
+        updateDateTime: null
+      }
+    ],
+    total: 2
   })
 }
 
@@ -25,9 +55,39 @@ export function getRolePageApi(params) {
  * @returns {*}
  */
 export function getAllRoleApi() {
+  /*
   return http({
     url: '/role/all'
   })
+  */
+  return Promise.resolve([
+    {
+      id: 2,
+      roleCode: 'admin',
+      roleName: '管理员',
+      status: '1',
+      createBy: 'admin',
+      createByName: '管理员',
+      createDateTime: '2023-10-25T16:10:46.000Z',
+      updateBy: null,
+      updateByName: null,
+      updateDateTime: null,
+      deleted: 0
+    },
+    {
+      id: 3,
+      roleCode: 'test1',
+      roleName: '测试角色1',
+      status: '1',
+      createBy: 'admin',
+      createByName: '管理员',
+      createDateTime: '2023-11-02T06:14:43.000Z',
+      updateBy: null,
+      updateByName: null,
+      updateDateTime: null,
+      deleted: 0
+    }
+  ])
 }
 
 /**
@@ -103,7 +163,10 @@ export function updateRoleMenusApi(data) {
  * @returns {*}
  */
 export function getRoleMenusApi(roleId) {
+  /*
   return http({
     url: '/role/get-menus/' + roleId
   })
+  */
+  return Promise.resolve([3, 4, 14, 2, 18, 16, 15, 17, 19, 1])
 }
