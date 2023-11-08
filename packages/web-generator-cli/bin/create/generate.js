@@ -35,43 +35,34 @@ export async function generateProject(options) {
   // 模板路径
   const templateDir = path.resolve(__dirname, "../../templates/vue2");
   // 拷贝
-  await copyAndRenderFiles(templateDir, projectDir, options);
+  copyAndRenderFiles(templateDir, projectDir, options);
   // 安装依赖
-  setTimeout(async () => {
-    await installDependencies(npmUtil, projectDir, projectName);
-  }, 1000);
+  await installDependencies(npmUtil, projectDir, projectName);
 }
 
 /**
  * 将模板复制到指定目录下，并将ejs渲染
  * @author jinpengh
  *
- * @export
- * @async
  * @param {*} templateDir
  * @param {*} projectDir
  * @param {{}} [options={}]
  * @returns {*}
  */
-export async function copyAndRenderFiles(
-  templateDir,
-  projectDir,
-  options = {}
-) {
-  const items = await fs.readdir(templateDir);
-  items.forEach(async (item) => {
-    const templateItemPath = `${templateDir}/${item}`;
-    const projectItemPath = `${projectDir}/${item}`;
-    const isDir = (await fs.lstat(templateItemPath)).isDirectory();
-    if (isDir) {
-      await fs.ensureDir(projectItemPath);
-      await copyAndRenderFiles(templateItemPath, projectItemPath, options);
+function copyAndRenderFiles(templateDir, projectDir, options = {}) {
+  fs.readdirSync(templateDir).forEach((item) => {
+    const templateItemPath = path.join(templateDir, item);
+    const projectItemPath = path.join(projectDir, item);
+    if (fs.lstatSync(templateItemPath).isDirectory()) {
+      fs.ensureDirSync(projectItemPath);
+      copyAndRenderFiles(templateItemPath, projectItemPath, options);
     } else {
       if (item.endsWith(".ejs")) {
-        const data = await ejs.renderFile(templateItemPath, options);
-        await fs.outputFile(projectItemPath.replace(".ejs", ""), data);
+        ejs.renderFile(templateItemPath, options, function (err, data) {
+          fs.outputFileSync(projectItemPath.replace(".ejs", ""), data);
+        });
       } else {
-        await fs.copy(templateItemPath, projectItemPath);
+        fs.copySync(templateItemPath, projectItemPath);
       }
     }
   });
