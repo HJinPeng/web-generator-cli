@@ -26,9 +26,7 @@ export async function generateProject(options) {
     frame,
     compLib,
     pageComp,
-    eslint,
-    prettier,
-    stylelint,
+    ie11,
     npmUtil,
   } = options;
 

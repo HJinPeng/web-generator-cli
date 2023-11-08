@@ -3,10 +3,8 @@ import {
   inputProjectTitle,
   selectFrame,
   selectCompLib,
+  confirmSupportIE11,
   selectNpmUtil,
-  confirmESLint,
-  confirmPrettier,
-  confirmStylelint,
   checkPageComp,
 } from "./inquirer.js";
 import { cwdResolve } from "../tool.js";
@@ -31,14 +29,7 @@ export async function create(projectName, options) {
   // 页面组件
   const pageComp = await checkPageComp();
 
-  // eslint
-  const eslint = await confirmESLint();
-
-  // prettier
-  const prettier = await confirmPrettier();
-
-  // stylelint
-  const stylelint = await confirmStylelint();
+  const ie11 = await confirmSupportIE11();
 
   // npm管理工具
   const npmUtil = await selectNpmUtil();
@@ -50,9 +41,7 @@ export async function create(projectName, options) {
     frame,
     compLib,
     pageComp,
-    eslint,
-    prettier,
-    stylelint,
+    ie11,
     npmUtil,
   });
 }

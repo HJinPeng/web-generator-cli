@@ -78,11 +78,11 @@ export async function selectFrame() {
         value: "vue2",
         description: "vue2 + js + vue-cli + vue-router + vuex + axios",
       },
-      {
-        name: "vue3 + ts",
-        value: "vue3",
-        description: "vue3 + ts + vite + vue-router + pinia + axios",
-      },
+      // {
+      //   name: "vue3 + ts",
+      //   value: "vue3",
+      //   description: "vue3 + ts + vite + vue-router + pinia + axios",
+      // },
     ],
   });
   return frame;
@@ -104,10 +104,10 @@ export async function selectCompLib() {
         name: "Ant Design Vue",
         value: "antd",
       },
-      {
-        name: "Element UI",
-        value: "element",
-      },
+      // {
+      //   name: "Element UI",
+      //   value: "element",
+      // },
     ],
   });
   return compLib;
@@ -183,48 +183,18 @@ export async function checkPageComp() {
 }
 
 /**
- * 是否使用eslint
+ * 是否支持ie11
  * @author jinpengh
  *
  * @export
  * @async
  * @returns {Promise<boolean>}
  */
-export async function confirmESLint() {
-  const eslint = await confirm({
-    message: "使用 ESLint?",
+export async function confirmSupportIE11() {
+  const ie11 = await confirm({
+    message: "支持ie11 ?",
   });
-  return eslint;
-}
-
-/**
- * 是否使用 Prettier
- * @author jinpengh
- *
- * @export
- * @async
- * @returns {Promise<boolean>}
- */
-export async function confirmPrettier() {
-  const prettier = await confirm({
-    message: "使用 Prettier?",
-  });
-  return prettier;
-}
-
-/**
- * 是否使用 Stylelint
- * @author jinpengh
- *
- * @export
- * @async
- * @returns {Promise<boolean>}
- */
-export async function confirmStylelint() {
-  const stylelint = await confirm({
-    message: "使用 Stylelint?",
-  });
-  return stylelint;
+  return ie11;
 }
 
 /**
