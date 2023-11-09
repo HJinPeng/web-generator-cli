@@ -48,11 +48,32 @@ export async function generateProject(options) {
  * @returns {*}
  */
 function copyAndRenderFiles(templateDir, projectDir, options = {}) {
-  fs.readdirSync(templateDir).forEach((item) => {
+  for (let item of fs.readdirSync(templateDir)) {
     const templateItemPath = path.join(templateDir, item);
     const projectItemPath = path.join(projectDir, item);
+
+    // 可选文件/文件夹判断
+    // 页面组件--login
+    if (skipPageComp("login", options.pageComp, templateItemPath)) continue;
+
+    // 页面组件--user
+    if (skipPageComp("user", options.pageComp, templateItemPath)) continue;
+
+    // 页面组件--role
+    if (skipPageComp("role", options.pageComp, templateItemPath)) continue;
+
+    // 页面组件--menu
+    if (skipPageComp("menu", options.pageComp, templateItemPath)) continue;
+
+    // 页面组件--dict
+    if (skipPageComp("dict", options.pageComp, templateItemPath)) continue;
+
+    // 页面组件--viewStack
+    if (skipPageComp("viewStack", options.pageComp, templateItemPath)) continue;
+
     if (fs.lstatSync(templateItemPath).isDirectory()) {
-      fs.ensureDirSync(projectItemPath);
+      // fixbug: 文件夹下没有文件时不需要创建该文件夹
+      // fs.ensureDirSync(projectItemPath);
       copyAndRenderFiles(templateItemPath, projectItemPath, options);
     } else {
       if (item.endsWith(".ejs")) {
@@ -63,7 +84,38 @@ function copyAndRenderFiles(templateDir, projectDir, options = {}) {
         fs.copySync(templateItemPath, projectItemPath);
       }
     }
-  });
+  }
+}
+
+// 页面组件对应的文件/文件夹路径
+const pageCompMap = {
+  login: [path.join("views", "login")],
+  user: [path.join("views", "system", "user")],
+  role: [path.join("views", "system", "role")],
+  menu: [path.join("views", "system", "menu")],
+  dict: [path.join("views", "system", "dict")],
+  viewStack: [path.join("views", "test", "view-stack")],
+};
+
+/**
+ * 跳过某些文件/文件夹的复制
+ * @author jinpengh
+ *
+ * @param {string} compName
+ * @param {Array} pageComp
+ * @param {string} templateItemPath
+ * @returns {boolean}
+ */
+function skipPageComp(compName, pageComp, templateItemPath) {
+  const allPath = pageCompMap[compName];
+  if (!pageComp.includes(compName)) {
+    for (let path of allPath) {
+      if (templateItemPath.indexOf(path) !== -1) {
+        return true;
+      }
+    }
+  }
+  return false;
 }
 
 /**

@@ -146,17 +146,21 @@ export async function checkPageComp() {
         value: "dict",
       },
       {
-        name: "文件管理",
-        value: "file",
+        name: "页面栈示例（测试页）",
+        value: "viewStack",
       },
-      {
-        name: "echarts看板",
-        value: "echarts",
-      },
-      {
-        name: "antv-g6示例",
-        value: "g6",
-      },
+      // {
+      //   name: "文件管理",
+      //   value: "file",
+      // },
+      // {
+      //   name: "echarts看板",
+      //   value: "echarts",
+      // },
+      // {
+      //   name: "antv-g6示例",
+      //   value: "g6",
+      // },
     ],
   });
   if (pageComp.includes("login")) {
@@ -167,14 +171,14 @@ export async function checkPageComp() {
           name: "账密",
           value: "login:account",
         },
-        {
-          name: "单点登录",
-          value: "login:sso",
-        },
-        {
-          name: "账密+单点登录",
-          value: "login:account+sso",
-        },
+        // {
+        //   name: "单点登录",
+        //   value: "login:sso",
+        // },
+        // {
+        //   name: "账密+单点登录",
+        //   value: "login:account+sso",
+        // },
       ],
     });
     pageComp.push(loginMode);
@@ -192,7 +196,8 @@ export async function checkPageComp() {
  */
 export async function confirmSupportIE11() {
   const ie11 = await confirm({
-    message: "支持ie11 ?",
+    message: "支持ie11 ?（默认不支持）",
+    default: false,
   });
   return ie11;
 }
