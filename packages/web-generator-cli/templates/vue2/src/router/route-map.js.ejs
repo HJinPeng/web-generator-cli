@@ -28,31 +28,39 @@ export const staticRouteMap = {
 
 // 动态路由映射表
 export const dynamicRouteMap = {
+  <%_ if(pageComp.includes('menu')) { _%>
   MenuManagement: {
     title: '菜单管理',
     path: '/menu-management',
     componentPath: 'views/system/menu/MenuManagement.vue',
     layout: 'LayoutSidebarHeader'
   },
+  <%_ } _%>
+  <%_ if(pageComp.includes('user')) { _%>
   UserManagement: {
     title: '用户管理',
     path: '/user-management',
     componentPath: 'views/system/user/UserManagement.vue',
     layout: 'LayoutSidebarHeader'
   },
+  <%_ } _%>
+  <%_ if(pageComp.includes('role')) { _%>
   RoleManagement: {
     title: '角色管理',
     path: '/role-management',
     componentPath: 'views/system/role/RoleManagement.vue',
     layout: 'LayoutSidebarHeader'
   },
+  <%_ } _%>
+  <%_ if(pageComp.includes('dict')) { _%>
   DictManagement: {
     title: '字典管理',
     path: '/dict-management',
     componentPath: 'views/system/dict/DictManagement.vue',
     layout: 'LayoutSidebarHeader'
   },
-
+  <%_ } _%>
+  <%_ if(pageComp.includes('viewStack')) { _%>
   // TEST: 测试专用
   TestViewStackFirst: {
     title: 'FirstView',
@@ -78,12 +86,15 @@ export const dynamicRouteMap = {
     componentPath: 'views/test/view-stack/FourthView.vue',
     layout: 'LayoutSidebarHeader'
   },
+  <%_ } _%>
+  <%_ if(pageComp.includes('echarts')) { _%>
   TestEchartsExample: {
     title: 'echarts示例',
     path: '/test/echarts',
     componentPath: 'views/test/echarts-example/EchartsExample.vue',
     layout: 'LayoutSidebarHeader'
   }
+  <%_ } _%>
 }
 
 // 所有路由映射表

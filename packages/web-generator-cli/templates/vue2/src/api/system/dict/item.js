@@ -12,9 +12,43 @@ import http from '@/common/http'
  * @returns {*}
  */
 export function getDictItemPageApi(params) {
+  /*
   return http({
     url: '/dict-item/page',
     params
+  })
+  */
+  return Promise.resolve({
+    current: 1,
+    size: 10,
+    pages: 1,
+    records: [
+      {
+        id: 36,
+        dictId: 10,
+        dictItemCode: '0',
+        dictItemName: '否',
+        sort: 1,
+        status: '1',
+        createByName: '管理员',
+        createDateTime: '2023-11-01 22:24:14',
+        updateByName: null,
+        updateDateTime: null
+      },
+      {
+        id: 37,
+        dictId: 10,
+        dictItemCode: '1',
+        dictItemName: '是',
+        sort: 10,
+        status: '1',
+        createByName: '管理员',
+        createDateTime: '2023-11-01 22:24:22',
+        updateByName: null,
+        updateDateTime: null
+      }
+    ],
+    total: 2
   })
 }
 

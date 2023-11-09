@@ -52,8 +52,64 @@ export function getUserPermissionApi() {
   })
   */
 
+  /*
+  {
+    id: 1,
+    permissionType: 'menu',
+    permissionName: '系统管理',
+    menuCode: null,
+    permissionCode: null,
+    permissionLevel: null,
+    icon: 'setting',
+    layout: null,
+    ranking: 5,
+    hiddenMenu: null,
+    keepAlive: null,
+    externalLink: null,
+    externalLinkContent: null,
+    status: '1',
+    parentId: null,
+    deleted: 0,
+    createBy: null,
+    createByName: null,
+    updateBy: 'admin',
+    updateByName: '管理员',
+    createDateTime: null,
+    updateDateTime: '2023-11-03T03:18:41.000Z',
+    comment: null,
+    children: [
+      {
+        id: 2,
+        permissionType: 'menu',
+        permissionName: '菜单管理',
+        menuCode: 'MenuManagement',
+        permissionCode: null,
+        permissionLevel: null,
+        icon: 'menu',
+        layout: 'LayoutHeaderSidebar',
+        ranking: 1,
+        hiddenMenu: '0',
+        keepAlive: '0',
+        externalLink: '0',
+        externalLinkContent: null,
+        status: '1',
+        parentId: 1,
+        deleted: 0,
+        createBy: null,
+        createByName: null,
+        updateBy: 'admin',
+        updateByName: '管理员',
+        createDateTime: null,
+        updateDateTime: '2023-11-02T14:00:54.000Z',
+        comment: null
+      }
+    ]
+  }
+  */
+
   return Promise.resolve({
     menus: [
+      <%_ if(pageComp.includes('menu') || pageComp.includes('role') || pageComp.includes('user') || pageComp.includes('dict')) { _%>
       {
         id: 1,
         permissionType: 'menu',
@@ -79,6 +135,7 @@ export function getUserPermissionApi() {
         updateDateTime: '2023-11-03T03:18:41.000Z',
         comment: null,
         children: [
+          <%_ if(pageComp.includes('menu')) { _%>
           {
             id: 2,
             permissionType: 'menu',
@@ -104,6 +161,8 @@ export function getUserPermissionApi() {
             updateDateTime: '2023-11-02T14:00:54.000Z',
             comment: null
           },
+          <%_ } _%>
+          <%_ if(pageComp.includes('role')) { _%>
           {
             id: 4,
             permissionType: 'menu',
@@ -129,6 +188,8 @@ export function getUserPermissionApi() {
             updateDateTime: '2023-11-02T13:59:35.000Z',
             comment: null
           },
+          <%_ } _%>
+          <%_ if(pageComp.includes('user')) { _%>
           {
             id: 3,
             permissionType: 'menu',
@@ -154,6 +215,8 @@ export function getUserPermissionApi() {
             updateDateTime: '2023-11-02T14:01:51.000Z',
             comment: null
           },
+          <%_ } _%>
+          <%_ if(pageComp.includes('dict')) { _%>
           {
             id: 14,
             permissionType: 'menu',
@@ -179,8 +242,10 @@ export function getUserPermissionApi() {
             updateDateTime: null,
             comment: null
           }
+          <%_ } _%>
         ]
       },
+      <%_ } _%>
       <%_ if(pageComp.includes('viewStack') || pageComp.includes('echarts')) { _%>
       {
         id: 15,
