@@ -53,9 +53,6 @@ function copyAndRenderFiles(templateDir, projectDir, options = {}) {
     const projectItemPath = path.join(projectDir, item);
 
     // 可选文件/文件夹判断
-    // 页面组件--login
-    if (skipPageComp("login", options.pageComp, templateItemPath)) continue;
-
     // 页面组件--user
     if (skipPageComp("user", options.pageComp, templateItemPath)) continue;
 
@@ -92,7 +89,6 @@ function copyAndRenderFiles(templateDir, projectDir, options = {}) {
 
 // 页面组件对应的文件/文件夹路径
 const pageCompMap = {
-  login: [path.join("views", "login")],
   user: [path.join("views", "system", "user")],
   role: [path.join("views", "system", "role")],
   menu: [path.join("views", "system", "menu")],

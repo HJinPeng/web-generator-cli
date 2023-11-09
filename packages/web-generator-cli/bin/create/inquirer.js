@@ -123,12 +123,8 @@ export async function selectCompLib() {
  */
 export async function checkPageComp() {
   let pageComp = await checkbox({
-    message: "选择页面组件（默认内置【欢迎页、异常页】）：",
+    message: "选择页面组件（默认内置【欢迎页、登录页、异常页】）：",
     choices: [
-      {
-        name: "登录",
-        value: "login",
-      },
       {
         name: "用户管理",
         value: "user",
