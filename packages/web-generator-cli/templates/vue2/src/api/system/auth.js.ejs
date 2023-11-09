@@ -246,7 +246,7 @@ export function getUserPermissionApi() {
         ]
       },
       <%_ } _%>
-      <%_ if(pageComp.includes('viewStack') || pageComp.includes('echarts')) { _%>
+      <%_ if(pageComp.includes('viewStack') || pageComp.includes('echarts') || pageComp.includes('echartsMap')) { _%>
       {
         id: 15,
         permissionType: 'menu',
@@ -405,6 +405,33 @@ export function getUserPermissionApi() {
             createDateTime: null,
             updateDateTime: null,
             comment: null
+          },
+          <%_ } _%>
+          <%_ if(pageComp.includes('echartsMap')) { _%>
+          {
+            "id": 21,
+            "permissionType": "menu",
+            "permissionName": "echarts地图",
+            "menuCode": "TestEchartsMap",
+            "permissionCode": null,
+            "permissionLevel": null,
+            "icon": "fund",
+            "layout": "LayoutSidebarHeader",
+            "ranking": 20,
+            "hiddenMenu": "0",
+            "keepAlive": "0",
+            "externalLink": "0",
+            "externalLinkContent": null,
+            "status": "1",
+            "parentId": 15,
+            "deleted": 0,
+            "createBy": null,
+            "createByName": null,
+            "updateBy": null,
+            "updateByName": null,
+            "createDateTime": null,
+            "updateDateTime": null,
+            "comment": null
           }
           <%_ } _%>
         ]

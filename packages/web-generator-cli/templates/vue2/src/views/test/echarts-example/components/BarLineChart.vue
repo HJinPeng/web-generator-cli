@@ -9,11 +9,13 @@ import * as echarts from 'echarts/core'
 import { BarChart, LineChart } from 'echarts/charts'
 import { TooltipComponent, GridComponent, LegendComponent } from 'echarts/components'
 import { CanvasRenderer } from 'echarts/renderers'
+import resizeEcharts from './resizeEcharts'
 
 // 注册组件
 echarts.use([BarChart, LineChart, TooltipComponent, GridComponent, LegendComponent, CanvasRenderer])
 
 export default {
+  mixins: [resizeEcharts],
   data() {
     return {
       option: {

@@ -93,6 +93,14 @@ export const dynamicRouteMap = {
     path: '/test/echarts',
     componentPath: 'views/test/echarts-example/EchartsExample.vue',
     layout: 'LayoutSidebarHeader'
+  },
+  <%_ } _%>
+  <%_ if(pageComp.includes('echartsMap')) { _%>
+  TestEchartsMap: {
+    title: 'echarts地图',
+    path: '/test/echarts-map',
+    componentPath: 'views/test/echarts-map/EchartsMap.vue',
+    layout: 'LayoutSidebarHeader'
   }
   <%_ } _%>
 }

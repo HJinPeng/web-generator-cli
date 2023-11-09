@@ -71,6 +71,10 @@ function copyAndRenderFiles(templateDir, projectDir, options = {}) {
     // 页面组件--echarts
     if (skipPageComp("echarts", options.pageComp, templateItemPath)) continue;
 
+    // 页面组件--echartsMap
+    if (skipPageComp("echartsMap", options.pageComp, templateItemPath))
+      continue;
+
     if (fs.lstatSync(templateItemPath).isDirectory()) {
       // fixbug: 文件夹下没有文件时不需要创建该文件夹
       // fs.ensureDirSync(projectItemPath);
@@ -95,6 +99,10 @@ const pageCompMap = {
   dict: [path.join("views", "system", "dict")],
   viewStack: [path.join("views", "test", "view-stack")],
   echarts: [path.join("views", "test", "echarts-example")],
+  echartsMap: [
+    path.join("views", "test", "echarts-example", "map"),
+    path.join("assets", "svg", "click-pointer.svg"),
+  ],
 };
 
 /**

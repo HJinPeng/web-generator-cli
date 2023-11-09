@@ -1,15 +1,13 @@
 <template>
   <AppPage class="echarts-example">
-    <BaseCard>
-      <div class="main">
-        <BarChart />
-        <LineChart />
-        <BarLineChart />
-        <StackBarChart />
-        <PieChart />
-        <ScatterChart />
-      </div>
-    </BaseCard>
+    <div class="main">
+      <BarChart />
+      <LineChart />
+      <BarLineChart />
+      <StackBarChart />
+      <PieChart />
+      <ScatterChart />
+    </div>
   </AppPage>
 </template>
 
@@ -37,10 +35,10 @@ export default {
   .main {
     display: flex;
     flex-wrap: wrap;
-    margin: -6px;
+    overflow-x: hidden;
     > * {
-      width: calc(33.33% - 12px);
-      margin: 6px;
+      width: calc(33.33% - 8px);
+      margin: 4px;
     }
   }
 }

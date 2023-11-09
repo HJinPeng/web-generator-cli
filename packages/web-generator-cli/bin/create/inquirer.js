@@ -149,6 +149,10 @@ export async function checkPageComp() {
         name: "echarts示例",
         value: "echarts",
       },
+      {
+        name: "echarts地图",
+        value: "echartsMap",
+      },
       // {
       //   name: "文件管理",
       //   value: "file",
