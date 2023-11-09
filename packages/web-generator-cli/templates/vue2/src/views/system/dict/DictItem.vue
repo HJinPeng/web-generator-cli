@@ -1,6 +1,6 @@
 <template>
   <div>
-    <BaseCard>
+    <BaseCard gap>
       <BaseSearch
         :disabled="loading_mx_table"
         @search="onSearch_mx_table"

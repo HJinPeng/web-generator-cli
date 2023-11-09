@@ -16,6 +16,9 @@
       >
         点击前往 SecondView.vue
       </router-link>
+      <br />
+      <br />
+      <a @click="$router.push('/sfdgknlksdf')">前往不存在的路由</a>
     </BaseCard>
   </AppPage>
 </template>

@@ -49,7 +49,6 @@ router.beforeEach(async (to, from, next) => {
         next()
       } else {
         if (allRouteMap[to.name]) {
-          // TODO: 判断远程是否有这个route name
           next('/403')
         } else {
           next('/404')

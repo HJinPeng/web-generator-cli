@@ -1,5 +1,5 @@
 <template>
-  <div class="base-card">
+  <div class="base-card" :class="[border && 'base-card--border', gap && 'base-card--gap']">
     <div v-if="title || $slots.title || $slots.extra" class="base-card__header">
       <div class="base-card__left">
         <slot name="title">
@@ -19,7 +19,9 @@
 <script>
 export default {
   props: {
-    title: String
+    title: String,
+    border: Boolean,
+    gap: Boolean // true时，margin-bottom: 16px
   }
 }
 </script>
@@ -32,9 +34,13 @@ export default {
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 0 4px #edf0f4;
-  & + & {
-    margin-top: 16px;
+  &--border {
+    border: 1px solid #e9ecef;
   }
+  &--gap {
+    margin-bottom: 16px;
+  }
+
   &__header {
     display: flex;
     align-items: center;

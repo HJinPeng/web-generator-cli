@@ -20,6 +20,10 @@ export default {
  * @returns {Array}
  */
 function generateViewStack(viewStack, to) {
+  // 如果to是异常页面，则直接推入栈中，返回上一页也可以还原页面栈数据
+  if (to.name === '404' || to.name === '403') {
+    return viewStack.concat(transformRouteToView(to))
+  }
   const viewPath = to.meta.viewPath || []
   // 页面栈空，则直接用to的viewPath生成页面栈
   if (viewStack.length === 0) {

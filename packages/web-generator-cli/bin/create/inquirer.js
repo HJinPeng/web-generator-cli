@@ -146,8 +146,12 @@ export async function checkPageComp() {
         value: "dict",
       },
       {
-        name: "页面栈示例（测试页）",
+        name: "页面栈示例",
         value: "viewStack",
+      },
+      {
+        name: "echarts示例",
+        value: "echarts",
       },
       // {
       //   name: "文件管理",

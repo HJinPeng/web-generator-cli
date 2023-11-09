@@ -16,13 +16,13 @@ export const staticRouteMap = {
     title: '未找到资源',
     path: '/404',
     componentPath: 'views/exceptions/NotFound.vue',
-    layout: 'LayoutSimple'
+    layout: 'LayoutHeader'
   },
   403: {
     title: '没有权限访问该资源',
     path: '/403',
     componentPath: 'views/exceptions/NoPermission.vue',
-    layout: 'LayoutSimple'
+    layout: 'LayoutHeader'
   }
 }
 
@@ -67,15 +67,21 @@ export const dynamicRouteMap = {
     layout: 'LayoutSidebarHeader'
   },
   TestViewStackThird: {
-    title: 'Thirdiew',
+    title: 'ThirdView',
     path: '/test/view-stack/third',
     componentPath: 'views/test/view-stack/ThirdView.vue',
     layout: 'LayoutSidebarHeader'
   },
   TestViewStackFourth: {
-    title: 'Fourthiew',
+    title: 'FourthView',
     path: '/test/view-stack/fourth/:id',
     componentPath: 'views/test/view-stack/FourthView.vue',
+    layout: 'LayoutSidebarHeader'
+  },
+  TestEchartsExample: {
+    title: 'echarts示例',
+    path: '/test/echarts',
+    componentPath: 'views/test/echarts-example/EchartsExample.vue',
     layout: 'LayoutSidebarHeader'
   }
 }

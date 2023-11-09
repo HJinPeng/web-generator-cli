@@ -71,6 +71,9 @@ function copyAndRenderFiles(templateDir, projectDir, options = {}) {
     // 页面组件--viewStack
     if (skipPageComp("viewStack", options.pageComp, templateItemPath)) continue;
 
+    // 页面组件--echarts
+    if (skipPageComp("echarts", options.pageComp, templateItemPath)) continue;
+
     if (fs.lstatSync(templateItemPath).isDirectory()) {
       // fixbug: 文件夹下没有文件时不需要创建该文件夹
       // fs.ensureDirSync(projectItemPath);
@@ -95,6 +98,7 @@ const pageCompMap = {
   menu: [path.join("views", "system", "menu")],
   dict: [path.join("views", "system", "dict")],
   viewStack: [path.join("views", "test", "view-stack")],
+  echarts: [path.join("views", "test", "echarts-example")],
 };
 
 /**
@@ -138,8 +142,9 @@ async function installDependencies(npmUtil, execDir, projectName) {
     const spinner = ora("安装依赖中，请稍等...").start();
 
     // 执行下载安装依赖操作
+    const npmCommand = npmUtil === "npm" ? "npm run" : npmUtil;
     exec(
-      `git init && ${npmUtil} install`,
+      `git init && ${npmCommand} install && ${npmCommand} format`,
       { cwd: execDir },
       (error, stdout, stderr) => {
         if (error) {
@@ -152,7 +157,7 @@ async function installDependencies(npmUtil, execDir, projectName) {
         console.log("项目初始化完成，执行以下命令启动项目：");
         console.log("\r\n");
         console.log(`  cd ${projectName}`);
-        console.log(`  ${npmUtil === "npm" ? "npm run" : npmUtil} dev`);
+        console.log(`  ${npmCommand} dev`);
         console.log("\r\n");
         resolve();
       }
