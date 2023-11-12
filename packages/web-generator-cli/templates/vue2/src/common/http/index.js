@@ -75,15 +75,15 @@ export default function http({
     url,
     params,
     data,
-    headers: {
-      'X-Access-Token': store.getters.Token || ''
-    },
     ...nativeOptions
   }
+
+  if (!httpParams.headers) {
+    httpParams.headers = {}
+  }
+  httpParams.headers['X-Access-Token'] = store.getters.Token || ''
+  
   if (md5) {
-    if (!httpParams.headers) {
-      httpParams.headers = {}
-    }
     const sign = signMd5.getSign(url, method === 'get' ? params : data)
     httpParams.headers['X-Sign'] = sign
     httpParams.headers['X-TIMESTAMP'] = signMd5.getTimestamp()
