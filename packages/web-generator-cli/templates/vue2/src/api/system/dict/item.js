@@ -58,6 +58,7 @@ export function getDictItemPageApi(params) {
  *
  * @export
  * @param {Object} data
+ * @param {String} params.dictId 字典id
  * @param {String} data.dictItemCode
  * @param {String} data.dictItemName
  * @param {String} params.sort 排序
@@ -78,8 +79,9 @@ export function addDictItemApi(data) {
  *
  * @export
  * @param {Object} data
- * @param {String} data.realCode
- * @param {String} data.realname
+ * @param {String} params.dictId 字典id
+ * @param {String} data.dictItemCode
+ * @param {String} data.dictItemName
  * @param {String} params.sort 排序
  * @param {String} params.status 状态
  * @returns {*}
