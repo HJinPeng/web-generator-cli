@@ -1,0 +1,125 @@
+import type { LayoutType } from '@/components/app-layout'
+
+export interface RouteItem {
+  title: string
+  path: string
+  componentPath: string
+  layout: LayoutType
+}
+
+interface RouteMap {
+  [key: string | number]: RouteItem
+}
+
+// 静态路由映射表
+export const staticRouteMap: RouteMap = {
+  Login: {
+    title: '登录',
+    path: '/login',
+    componentPath: 'views/login/LoginView.vue',
+    layout: 'LayoutSimple'
+  },
+  Welcome: {
+    title: '欢迎页',
+    path: '/',
+    componentPath: 'views/welcome/WelcomeView.vue',
+    layout: 'LayoutSidebarHeader'
+  },
+  404: {
+    title: '未找到资源',
+    path: '/404',
+    componentPath: 'views/exceptions/NotFound.vue',
+    layout: 'LayoutHeader'
+  },
+  403: {
+    title: '没有权限访问该资源',
+    path: '/403',
+    componentPath: 'views/exceptions/NoPermission.vue',
+    layout: 'LayoutHeader'
+  }
+}
+
+// 动态路由映射表
+export const dynamicRouteMap: RouteMap = {
+  <%_ if(pageComp.includes('menu')) { _%>
+  MenuManagement: {
+    title: '菜单管理',
+    path: '/menu-management',
+    componentPath: 'views/system/menu/MenuManagement.vue',
+    layout: 'LayoutSidebarHeader'
+  },
+  <%_ } _%>
+  <%_ if(pageComp.includes('user')) { _%>
+  UserManagement: {
+    title: '用户管理',
+    path: '/user-management',
+    componentPath: 'views/system/user/UserManagement.vue',
+    layout: 'LayoutSidebarHeader'
+  },
+  <%_ } _%>
+  <%_ if(pageComp.includes('role')) { _%>
+  RoleManagement: {
+    title: '角色管理',
+    path: '/role-management',
+    componentPath: 'views/system/role/RoleManagement.vue',
+    layout: 'LayoutSidebarHeader'
+  },
+  <%_ } _%>
+  <%_ if(pageComp.includes('dict')) { _%>
+  DictManagement: {
+    title: '字典管理',
+    path: '/dict-management',
+    componentPath: 'views/system/dict/DictManagement.vue',
+    layout: 'LayoutSidebarHeader'
+  },
+  <%_ } _%>
+  <%_ if(pageComp.includes('viewStack')) { _%>
+  // TEST: 测试专用
+  TestViewStackFirst: {
+    title: 'FirstView',
+    path: '/test/view-stack/first',
+    componentPath: 'views/test/view-stack/FirstView.vue',
+    layout: 'LayoutSidebarHeader'
+  },
+  TestViewStackSecond: {
+    title: 'SecondView',
+    path: '/test/view-stack/second/:id',
+    componentPath: 'views/test/view-stack/SecondView.vue',
+    layout: 'LayoutSidebarHeader'
+  },
+  TestViewStackThird: {
+    title: 'ThirdView',
+    path: '/test/view-stack/third',
+    componentPath: 'views/test/view-stack/ThirdView.vue',
+    layout: 'LayoutSidebarHeader'
+  },
+  TestViewStackFourth: {
+    title: 'FourthView',
+    path: '/test/view-stack/fourth/:id',
+    componentPath: 'views/test/view-stack/FourthView.vue',
+    layout: 'LayoutSidebarHeader'
+  },
+  <%_ } _%>
+  <%_ if(pageComp.includes('echarts')) { _%>
+  TestEchartsExample: {
+    title: 'echarts示例',
+    path: '/test/echarts',
+    componentPath: 'views/test/echarts-example/EchartsExample.vue',
+    layout: 'LayoutSidebarHeader'
+  },
+  <%_ } _%>
+  <%_ if(pageComp.includes('echartsMap')) { _%>
+  TestEchartsMap: {
+    title: 'echarts地图',
+    path: '/test/echarts-map',
+    componentPath: 'views/test/echarts-map/EchartsMap.vue',
+    layout: 'LayoutSidebarHeader'
+  }
+  <%_ } _%>
+}
+
+// 所有路由映射表
+export const allRouteMap: RouteMap = {
+  ...staticRouteMap,
+  ...dynamicRouteMap
+}

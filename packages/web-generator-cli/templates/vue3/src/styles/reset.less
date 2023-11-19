@@ -1,0 +1,36 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: none;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  overflow: auto;
+  background-color: #f8f9fb;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d9d9d9;
+  border-radius: 9999em;
+}
+
+a {
+  color: @primary-color;
+  &:hover {
+    color: desaturate(@primary-color, 20%);
+  }
+}
+
+@import './common.less';

@@ -1,0 +1,463 @@
+import http from '@/common/http'
+import type { LoginParams, UserInfo, UserPermission } from './types'
+
+// 登录：账号密码
+export function loginApi(data: LoginParams) {
+  /*
+  return http<UserInfo>({
+    url: '/login',
+    method: 'post',
+    data
+  })
+  */
+  return Promise.resolve({
+    id: 10,
+    account: 'admin',
+    realname: '管理员',
+    email: null,
+    phone: null,
+    profilePhoto: null,
+    sex: '0',
+    status: '1',
+    token:
+      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwLCJhY2NvdW50IjoiYWRtaW4iLCJyZWFsbmFtZSI6IueuoeeQhuWRmCIsInJvbGVzIjpbeyJpZCI6Miwicm9sZUNvZGUiOiJhZG1pbiIsInJvbGVOYW1lIjoi566h55CG5ZGYIiwic3RhdHVzIjoiMSJ9XSwiaWF0IjoxNjk5NDUxMzA1fQ.PqxPfqAt__3_vBU3-hsH131bCprSiWbqhBPTgZYk7gE',
+    roles: [
+      {
+        id: 2,
+        roleCode: 'admin',
+        roleName: '管理员',
+        status: '1'
+      }
+    ]
+  } as UserInfo)
+}
+
+// 获取用户权限：菜单，权限码
+export function getUserPermissionApi() {
+  /*
+  return http<UserPermission>({
+    url: '/queryUserMenuPermission'
+  })
+  */
+
+  /*
+  {
+    id: 1,
+    permissionType: 'menu',
+    permissionName: '系统管理',
+    menuCode: null,
+    permissionCode: null,
+    permissionLevel: null,
+    icon: 'setting',
+    layout: null,
+    ranking: 5,
+    hiddenMenu: null,
+    keepAlive: null,
+    externalLink: null,
+    externalLinkContent: null,
+    status: '1',
+    parentId: null,
+    deleted: 0,
+    createBy: null,
+    createByName: null,
+    updateBy: 'admin',
+    updateByName: '管理员',
+    createDateTime: null,
+    updateDateTime: '2023-11-03T03:18:41.000Z',
+    comment: null,
+    children: [
+      {
+        id: 2,
+        permissionType: 'menu',
+        permissionName: '菜单管理',
+        menuCode: 'MenuManagement',
+        permissionCode: null,
+        permissionLevel: null,
+        icon: 'menu',
+        layout: 'LayoutHeaderSidebar',
+        ranking: 1,
+        hiddenMenu: '0',
+        keepAlive: '0',
+        externalLink: '0',
+        externalLinkContent: null,
+        status: '1',
+        parentId: 1,
+        deleted: 0,
+        createBy: null,
+        createByName: null,
+        updateBy: 'admin',
+        updateByName: '管理员',
+        createDateTime: null,
+        updateDateTime: '2023-11-02T14:00:54.000Z',
+        comment: null
+      }
+    ]
+  }
+  */
+
+  return Promise.resolve({
+    menus: [
+      <%_ if(pageComp.includes('menu') || pageComp.includes('role') || pageComp.includes('user') || pageComp.includes('dict')) { _%>
+      {
+        id: 1,
+        permissionType: 'menu',
+        permissionName: '系统管理',
+        menuCode: null,
+        permissionCode: null,
+        permissionLevel: null,
+        icon: 'setting',
+        layout: null,
+        ranking: 5,
+        hiddenMenu: null,
+        keepAlive: null,
+        externalLink: null,
+        externalLinkContent: null,
+        status: '1',
+        parentId: null,
+        deleted: 0,
+        createBy: null,
+        createByName: null,
+        updateBy: 'admin',
+        updateByName: '管理员',
+        createDateTime: null,
+        updateDateTime: '2023-11-03T03:18:41.000Z',
+        comment: null,
+        children: [
+          <%_ if(pageComp.includes('menu')) { _%>
+          {
+            id: 2,
+            permissionType: 'menu',
+            permissionName: '菜单管理',
+            menuCode: 'MenuManagement',
+            permissionCode: null,
+            permissionLevel: null,
+            icon: 'menu',
+            layout: 'LayoutHeaderSidebar',
+            ranking: 1,
+            hiddenMenu: '0',
+            keepAlive: '0',
+            externalLink: '0',
+            externalLinkContent: null,
+            status: '1',
+            parentId: 1,
+            deleted: 0,
+            createBy: null,
+            createByName: null,
+            updateBy: 'admin',
+            updateByName: '管理员',
+            createDateTime: null,
+            updateDateTime: '2023-11-02T14:00:54.000Z',
+            comment: null
+          },
+          <%_ } _%>
+          <%_ if(pageComp.includes('role')) { _%>
+          {
+            id: 4,
+            permissionType: 'menu',
+            permissionName: '角色管理',
+            menuCode: 'RoleManagement',
+            permissionCode: null,
+            permissionLevel: null,
+            icon: 'crown',
+            layout: 'LayoutHeaderSidebar',
+            ranking: 5,
+            hiddenMenu: '0',
+            keepAlive: '0',
+            externalLink: '0',
+            externalLinkContent: null,
+            status: '1',
+            parentId: 1,
+            deleted: 0,
+            createBy: null,
+            createByName: null,
+            updateBy: 'admin',
+            updateByName: '管理员',
+            createDateTime: null,
+            updateDateTime: '2023-11-02T13:59:35.000Z',
+            comment: null
+          },
+          <%_ } _%>
+          <%_ if(pageComp.includes('user')) { _%>
+          {
+            id: 3,
+            permissionType: 'menu',
+            permissionName: '用户管理',
+            menuCode: 'UserManagement',
+            permissionCode: null,
+            permissionLevel: null,
+            icon: 'user',
+            layout: 'LayoutHeaderSidebar',
+            ranking: 10,
+            hiddenMenu: '0',
+            keepAlive: '0',
+            externalLink: '0',
+            externalLinkContent: null,
+            status: '1',
+            parentId: 1,
+            deleted: 0,
+            createBy: null,
+            createByName: null,
+            updateBy: 'admin',
+            updateByName: '管理员',
+            createDateTime: null,
+            updateDateTime: '2023-11-02T14:01:51.000Z',
+            comment: null
+          },
+          <%_ } _%>
+          <%_ if(pageComp.includes('dict')) { _%>
+          {
+            id: 14,
+            permissionType: 'menu',
+            permissionName: '字典管理',
+            menuCode: 'DictManagement',
+            permissionCode: null,
+            permissionLevel: null,
+            icon: 'book',
+            layout: 'LayoutHeaderSidebar',
+            ranking: 15,
+            hiddenMenu: '0',
+            keepAlive: '0',
+            externalLink: '0',
+            externalLinkContent: null,
+            status: '1',
+            parentId: 1,
+            deleted: 0,
+            createBy: null,
+            createByName: null,
+            updateBy: null,
+            updateByName: null,
+            createDateTime: null,
+            updateDateTime: null,
+            comment: null
+          }
+          <%_ } _%>
+        ]
+      },
+      <%_ } _%>
+      <%_ if(pageComp.includes('viewStack') || pageComp.includes('echarts') || pageComp.includes('echartsMap')) { _%>
+      {
+        id: 15,
+        permissionType: 'menu',
+        permissionName: '测试专用',
+        menuCode: null,
+        permissionCode: null,
+        permissionLevel: null,
+        icon: 'alert',
+        layout: null,
+        ranking: 10,
+        hiddenMenu: '0',
+        keepAlive: '0',
+        externalLink: '0',
+        externalLinkContent: null,
+        status: '1',
+        parentId: null,
+        deleted: 0,
+        createBy: null,
+        createByName: null,
+        updateBy: null,
+        updateByName: null,
+        createDateTime: null,
+        updateDateTime: null,
+        comment: null,
+        children: [
+          <%_ if(pageComp.includes('viewStack')) { _%>
+          {
+            id: 16,
+            permissionType: 'menu',
+            permissionName: '页面栈',
+            menuCode: 'TestViewStackFirst',
+            permissionCode: null,
+            permissionLevel: null,
+            icon: 'ordered-list',
+            layout: 'LayoutHeaderSidebar',
+            ranking: 10,
+            hiddenMenu: '0',
+            keepAlive: '0',
+            externalLink: '0',
+            externalLinkContent: null,
+            status: '1',
+            parentId: 15,
+            deleted: 0,
+            createBy: null,
+            createByName: null,
+            updateBy: null,
+            updateByName: null,
+            createDateTime: null,
+            updateDateTime: null,
+            comment: null,
+            children: [
+              {
+                id: 17,
+                permissionType: 'menu',
+                permissionName: 'SecondView',
+                menuCode: 'TestViewStackSecond',
+                permissionCode: null,
+                permissionLevel: null,
+                icon: null,
+                layout: 'LayoutSidebarHeader',
+                ranking: 10,
+                hiddenMenu: '1',
+                keepAlive: '1',
+                externalLink: '0',
+                externalLinkContent: null,
+                status: '1',
+                parentId: 16,
+                deleted: 0,
+                createBy: null,
+                createByName: null,
+                updateBy: null,
+                updateByName: null,
+                createDateTime: null,
+                updateDateTime: null,
+                comment: null,
+                children: [
+                  {
+                    id: 18,
+                    permissionType: 'menu',
+                    permissionName: 'ThirdView',
+                    menuCode: 'TestViewStackThird',
+                    permissionCode: null,
+                    permissionLevel: null,
+                    icon: null,
+                    layout: 'LayoutSidebarHeader',
+                    ranking: 10,
+                    hiddenMenu: '1',
+                    keepAlive: '1',
+                    externalLink: '0',
+                    externalLinkContent: null,
+                    status: '1',
+                    parentId: 17,
+                    deleted: 0,
+                    createBy: null,
+                    createByName: null,
+                    updateBy: null,
+                    updateByName: null,
+                    createDateTime: null,
+                    updateDateTime: null,
+                    comment: null,
+                    children: [
+                      {
+                        id: 19,
+                        permissionType: 'menu',
+                        permissionName: 'FourthView',
+                        menuCode: 'TestViewStackFourth',
+                        permissionCode: null,
+                        permissionLevel: null,
+                        icon: null,
+                        layout: 'LayoutSidebarHeader',
+                        ranking: 10,
+                        hiddenMenu: '1',
+                        keepAlive: '0',
+                        externalLink: '0',
+                        externalLinkContent: null,
+                        status: '1',
+                        parentId: 18,
+                        deleted: 0,
+                        createBy: null,
+                        createByName: null,
+                        updateBy: null,
+                        updateByName: null,
+                        createDateTime: null,
+                        updateDateTime: null,
+                        comment: null
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          <%_ } _%>
+          <%_ if(pageComp.includes('echarts')) { _%>
+          {
+            id: 20,
+            permissionType: 'menu',
+            permissionName: 'echarts示例',
+            menuCode: 'TestEchartsExample',
+            permissionCode: null,
+            permissionLevel: null,
+            icon: 'bar-chart',
+            layout: 'LayoutSidebarHeader',
+            ranking: 20,
+            hiddenMenu: '0',
+            keepAlive: '0',
+            externalLink: '0',
+            externalLinkContent: null,
+            status: '1',
+            parentId: 15,
+            deleted: 0,
+            createBy: null,
+            createByName: null,
+            updateBy: null,
+            updateByName: null,
+            createDateTime: null,
+            updateDateTime: null,
+            comment: null
+          },
+          <%_ } _%>
+          <%_ if(pageComp.includes('echartsMap')) { _%>
+          {
+            "id": 21,
+            "permissionType": "menu",
+            "permissionName": "echarts地图",
+            "menuCode": "TestEchartsMap",
+            "permissionCode": null,
+            "permissionLevel": null,
+            "icon": "fund",
+            "layout": "LayoutSidebarHeader",
+            "ranking": 20,
+            "hiddenMenu": "0",
+            "keepAlive": "0",
+            "externalLink": "0",
+            "externalLinkContent": null,
+            "status": "1",
+            "parentId": 15,
+            "deleted": 0,
+            "createBy": null,
+            "createByName": null,
+            "updateBy": null,
+            "updateByName": null,
+            "createDateTime": null,
+            "updateDateTime": null,
+            "comment": null
+          }
+          <%_ } _%>
+        ]
+      }
+      <%_ } _%>
+    ]
+  } as UserPermission)
+}
+
+// 根据token获取用户信息
+export function getUserInfoApi() {
+  /*
+  return http<UserInfo>({
+    url: '/getUserInfo'
+  })
+  */
+
+  return Promise.resolve({
+    id: 10,
+    account: 'admin',
+    realname: '管理员',
+    email: null,
+    phone: null,
+    profilePhoto: null,
+    sex: '0',
+    status: '1',
+    roles: [
+      {
+        id: 2,
+        roleCode: 'admin',
+        roleName: '管理员',
+        status: '1'
+      }
+    ]
+  } as UserInfo)
+}
+
+// 退出登录
+export function logoutApi() {
+  return Promise.resolve('ok')
+}
