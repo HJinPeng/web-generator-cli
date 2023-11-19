@@ -32,7 +32,9 @@ function generateViewStack(viewStack, to) {
     const viewExistIndex = viewStack.findIndex((view) => view.fullPath === to.fullPath)
     // 目标页面存在页面栈中
     if (viewExistIndex !== -1) {
-      return viewStack.slice(0, viewExistIndex + 1)
+      const result = viewStack.slice(0, viewExistIndex + 1)
+      result[result.length - 1].clickable = true
+      return result
     } else {
       // 目标页面的父级页面数量和当前页面栈数量一样多
       if ((to.meta.viewPath || []).length - 1 === viewStack.length) {
