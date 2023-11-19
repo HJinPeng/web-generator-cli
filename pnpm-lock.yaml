@@ -1,14 +1,16 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 importers:
 
   .: {}
 
   examples/vue2:
+    devDependencies:
+      web-generator-cli:
+        specifier: workspace:*
+        version: link:../../packages/web-generator-cli
+
+  examples/vue3:
     devDependencies:
       web-generator-cli:
         specifier: workspace:*
@@ -583,3 +585,7 @@ packages:
       string-width: 4.2.3
       strip-ansi: 6.0.1
     dev: false
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false

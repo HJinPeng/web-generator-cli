@@ -78,11 +78,11 @@ export async function selectFrame() {
         value: "vue2",
         description: "vue2 + js + vue-cli + vue-router + vuex + axios",
       },
-      // {
-      //   name: "vue3 + ts",
-      //   value: "vue3",
-      //   description: "vue3 + ts + vite + vue-router + pinia + axios",
-      // },
+      {
+        name: "vue3 + ts",
+        value: "vue3",
+        description: "vue3 + ts + vite + vue-router + pinia + axios",
+      },
     ],
   });
   return frame;

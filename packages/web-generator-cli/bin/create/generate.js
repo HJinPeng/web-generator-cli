@@ -31,7 +31,7 @@ export async function generateProject(options) {
   } = options;
 
   // 模板路径
-  const templateDir = path.resolve(__dirname, "../../templates/vue2");
+  const templateDir = path.resolve(__dirname, "../../templates/" + frame);
   // 拷贝
   copyAndRenderFiles(templateDir, projectDir, options);
   // 安装依赖
@@ -100,7 +100,7 @@ const pageCompMap = {
   viewStack: [path.join("views", "test", "view-stack")],
   echarts: [path.join("views", "test", "echarts-example")],
   echartsMap: [
-    path.join("views", "test", "echarts-example", "map"),
+    path.join("views", "test", "echarts-map"),
     path.join("assets", "svg", "click-pointer.svg"),
   ],
 };

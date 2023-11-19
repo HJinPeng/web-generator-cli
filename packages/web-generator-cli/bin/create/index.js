@@ -29,7 +29,10 @@ export async function create(projectName, options) {
   // 页面组件
   const pageComp = await checkPageComp();
 
-  const ie11 = await confirmSupportIE11();
+  let ie11;
+  if (frame === "vue2") {
+    ie11 = await confirmSupportIE11();
+  }
 
   // npm管理工具
   const npmUtil = await selectNpmUtil();
