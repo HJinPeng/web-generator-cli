@@ -82,15 +82,10 @@ export default {
             aspectScale: 0.9,
             zlevel: -1,
             itemStyle: {
-              normal: {
-                areaColor: '#276294',
-                shadowColor: '#276294',
-                shadowOffsetX: 0,
-                shadowOffsetY: 15
-              },
-              emphasis: {
-                show: false
-              }
+              areaColor: '#276294',
+              shadowColor: '#276294',
+              shadowOffsetX: 0,
+              shadowOffsetY: 15
             }
           },
           {
@@ -105,15 +100,10 @@ export default {
             aspectScale: 0.9,
             zlevel: -2,
             itemStyle: {
-              normal: {
-                areaColor: '#1d4169',
-                shadowColor: '#1d4169',
-                shadowOffsetX: 0,
-                shadowOffsetY: 30
-              },
-              emphasis: {
-                show: false
-              }
+              areaColor: '#1d4169',
+              shadowColor: '#1d4169',
+              shadowOffsetX: 0,
+              shadowOffsetY: 30
             }
           }
         ],
@@ -131,9 +121,7 @@ export default {
             },
             selectedMode: 'single',
             itemStyle: {
-              normal: {
-                borderColor: '#65d7f1'
-              }
+              borderColor: '#65d7f1'
             },
             emphasis: {
               itemStyle: {
@@ -189,12 +177,6 @@ export default {
         this.echartsInstance.hideLoading()
       }, 2000)
     },
-    onSelectArea(name) {
-      this.echartsInstance.dispatchAction({
-        type: 'select',
-        name
-      })
-    },
     getData(dataMap = {}) {
       return provinceArr.map((item) => {
         const data = {
@@ -219,9 +201,6 @@ export default {
       this.provinceData = this.getData(dataMap)
       this.option.series[0].data = this.provinceData
       this.echartsInstance.setOption(this.option)
-      if (this.selectedArea) {
-        this.onSelectArea(this.selectedArea)
-      }
     }
   }
 }
